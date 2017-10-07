@@ -11,8 +11,8 @@
 	*
 	*
 	*/
-	echo "Hello Word 4Linux"
-	echo "Comentarios"
+	echo "Hello Word 4Linux";
+	echo "Comentarios";
 	echo "Comentarios";
 	echo "Comentarios";
 	
