@@ -1,10 +1,8 @@
 <?php
 	$idade = 11;
-	if ($idade >= 18) 
-	{
+	if ($idade >= 18) 	{
 		echo $idade;
-	} else
-	{
+	} else 	{
 		echo "Menor de Idade";
 	}
 
