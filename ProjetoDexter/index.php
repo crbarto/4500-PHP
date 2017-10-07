@@ -1,5 +1,5 @@
     <header class="header">
-           <?php #Topo ?>
+           <?php include_once 'template/topo.php' ?>
     </header>
     <?php
         $banners = array(
@@ -65,11 +65,11 @@
     </section>
 
     <section class="vantagens">
-        <?php #Vantagens ?>
+        <?php include_once 'template/vantagens.php' ?>
     </section>
 
     <section class="funcionalidades">
-        <?php #Funcionalidades ?>
+        <?php include_once 'template/funcionalidades.php' ?>
     </section>
 
     <section class="cadastro">
@@ -83,7 +83,7 @@
     </section>
 
     <footer class="footer">
-        <?php #Rodapé ?>
+        <?php include_once 'template/rodape.php' ?>
     </footer>
 
 </body>

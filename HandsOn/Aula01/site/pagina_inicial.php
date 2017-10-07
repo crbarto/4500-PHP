@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>4Linux</title>
-	</head>
-	<body>
-		<ul>
-			<li><a href='pagina_inicial.php'>HOME</li>
-			<li><a href='sobre.php'>SOBRE</li>
-			<li><a href='contato.php'>HOME</li>
-		</ul>
+<?php
+	required_once '_topo.php';
+
+?>
+	<p> Pagina Incial <p>
+
+<?php
+	required_once '_rodape.php';
+?>
