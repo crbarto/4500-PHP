@@ -46,7 +46,7 @@
     </section>
 
     <footer class="footer">
-       <?php #rodape ?>
+        <?php include_once 'template/rodape.php' ?>
     </footer>
 
 </body>

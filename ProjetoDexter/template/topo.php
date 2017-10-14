@@ -1,6 +1,8 @@
 <!doctype html>
 <html dir="ltr" lang="pt-BR">
 <head>
+
+
     <meta charset="utf-8">
     <title>Dexter Courier | Home</title>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
@@ -15,6 +17,7 @@
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+        <?php include_once 'include/utils.php' ?>
 </head>
 <body>
 <div class="container">
@@ -22,17 +25,21 @@
 	<nav class="right">
 		<ul>
 		       <?php
+
                    $paginas[] = array('url' => 'index.php', 'label' => 'Home');
                    $paginas[] = array('url' => 'sobre.php', 'label' => 'Sobre a Dexter');
                    $paginas[] = array('url' => 'servicos.php', 'label' => 'Serviços');
                    $paginas[] = array('url' => 'cadastro.php', 'label' => 'Cadastre-se');
                    $paginas[] = array('url' => 'contato.php', 'label' => 'Contato');
-
-                  foreach ($paginas as $pagina) 
-                  {
-                    echo "<li><a href=".$pagina['url'].">".$pagina['label']."</a></li>";
-                  }
-             ?>
+            ?>
+            <?php foreach ($paginas as $pagina): ?> 
+                <li class = "<?= (local_url($pagina['url'])) ? 'active' : '' ?>">
+                  <a href="<?= $pagina['url'] ?> ">
+                      <?= $pagina['label']; ?>                  
+                  </a>
+                </li>
+            <?php endforeach; ?>
+      </ul>
 		</ul>
 	</nav>
 </div>

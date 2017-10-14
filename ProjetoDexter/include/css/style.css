@@ -63,6 +63,10 @@ img{
 .header nav{
 
 }
+.header .active a {
+   border-bottom: 2px solid #1f3574;
+   font-weight: bold;
+}
 .header ul {
    list-style: none;
 }
