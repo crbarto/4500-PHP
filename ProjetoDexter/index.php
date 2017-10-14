@@ -29,8 +29,7 @@
                 'nome' => 'Dexter - Logística',
                 'descricao' => 'Mel habeo homero commune te. Nostrud accumsan oporteat mea ex. Lorem ullum mei ne, duo ei amet primis incorrupte. Eos te alienum molestiae, iriure atomorum ei has.',
                 'url' => 'img/banner/banner4.jpg'
-            ),
-
+            )
 
         )
     ?>
@@ -40,18 +39,18 @@
           <!-- Wrapper for slides -->
 
           <div class="carousel-inner">
-            <?php #Banner --- Inicio Laço ?>
-                <div class="item" style="background-image:url('<?php #Url Banner ?>')">
+            <?php foreach ($banners as $banner) : ?>
+                <div class="item <?= ($banner['id'] == 1) ? 'active' : '' ?>" style="background-image:url('<?= $banner['url']; ?>')">
                   <div class="container">
                     <div class="row">
                         <div class="span12">
-                            <h2><?php #Nome do Banner ?></h2>
-                            <p><?php #Descriçao ?></p>
+                            <h2><?= $banner['nome']; ?></h2>
+                            <p><?=  $banner['descricao'];?></p>
                         </div>
                     </div>
                   </div>
                </div>
-           <?php #Banner ---- Fim Laço?>
+           <?php endforeach; ?>
          </div>
 
           <!-- Controls -->
