@@ -17,4 +17,13 @@
 		}
 	}
 
+	function valida_campo($campo){
+		if ($campo == '') {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+	 echo (isset($_POST['nome']))? $_POST['nome'] : '';
 ?>
