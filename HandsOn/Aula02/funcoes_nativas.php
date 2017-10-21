@@ -52,7 +52,7 @@
 	echo "<hr>";
 
 	$email ="claudio.barto@autoavaliar.com";
-	$dominio = strstr($email,'@',false);
+	$dominio = strstr($email,'@');
 	$user = strstr($email,'@',true);
 
 	echo "Dominio: ".$dominio;
