@@ -21,13 +21,7 @@
 		}
 
 
-		public function depositar($valor)
-		{
-
-			$this->saldo =+ $valor;
-			echo "<p>Depositando o valor e R$ {$valor} reais</p>";
-
-		}
+		public abstract function depositar($valor)
 
 		public function sacar($valor)
 		{
@@ -65,7 +59,8 @@
 
 	{
 		private $chequeEspecial = false;
-
+		protected $rendimento = 1;
+		
 		public function liberaChequeEspecial()
 		{
 

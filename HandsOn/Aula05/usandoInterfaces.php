@@ -12,9 +12,9 @@
 	class TV implements Televisao
 	{
 		// declarando as variaveis
-		private $volume;
-		private $canal;
-		private $estado;
+		private $volume = 9;
+		private $canal = 5;
+		private $estado = 'OFF';
 		private $maxVolume = 45;
 		private $canais = [3,4,5,8,10,15,25,28,40,40];
 		
