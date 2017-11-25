@@ -12,20 +12,29 @@ $statement = $conexao->prepare("insert into tb_alunos(
 														:email,
 														:sobrenome)
 										");
-$statement->execute(array(":id" => 9,
-						":nome" => "Jiraya",
-						":email" => "jiraya@hotmail.com",
-						":sobrenome" => "Anime"));
+$statement->execute(array(":id" => 12,
+						":nome" => "Bob",
+						":email" => "bob@hotmail.com",
+						":sobrenome" => "Esponja"));
 
-$statement->execute(array(":id" => 10,
-						":nome" => "Arnold",
-						":email" => "aschw@hotmail.com",
-						":sobrenome" => "Schuwasnegger"));
+$statement->execute(array(":id" => 13,
+						":nome" => "Bob",
+						":email" => "bobconst@hotmail.com",
+						":sobrenome" => "Contrutor"));
 
-$statement->execute(array(":id" => 11,
-						":nome" => "Rocky",
-						":email" => "rockyb@hotmail.com",
-						":sobrenome" => "Balboa"));
+$statement->execute(array(":id" => 14,
+						":nome" => "Jay",
+						":email" => "jayb@hotmail.com",
+						":sobrenome" => "Jay"));
+
+$pessoa = [
+			":id" => 15,
+			":nome" => "Caverna",
+			":email" => "caverna@hotmail.com",
+			":sobrenome" => "Dragao"
+];
+$statement->execute($pessoa);
+
 $alunos = $conexao->query('SELECT * FROM tb_alunos');
 
 $alunos = $alunos->fetchAll(PDO::FETCH_ASSOC);
