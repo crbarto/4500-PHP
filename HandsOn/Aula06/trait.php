@@ -1,13 +1,15 @@
 <?php 
 session_start();
-$_SESSION["msg"] = "";
 
 trait log
 {
 
 	public function salvaLog($message)
 	{
-	    
+	    if (!isset($_SESSION["msg"]))
+	    {
+	    	$_SESSION['msg'] = "";
+	    }
 	    $_SESSION["msg"] = $_SESSION["msg"] . $message .'</br>';
 
 	}
