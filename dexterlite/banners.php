@@ -9,7 +9,7 @@
 		<div class="container">
 			
 			<?php
-			include 'Conexao.php';
+			require 'src/Conexao.php';
 
 			$con = Conexao::getInstance();
 
