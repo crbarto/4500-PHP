@@ -1,30 +1,4 @@
-<?php
-	if (!empty($_POST['nome']) && !empty($_POST['url'])) {
-		$con = Conexao::getInstance();
-		$query = $con->prepare("insert into banners(nome,
-  													descricao,
-													url
-													) values (
-													:nome,
-													:descricao,
-													:url
-													)"
-													);
-		$banner = [
-					":nome"       => $_POST['nome'],
-					":descricao"  => $_POST['descricao'],
-					":url"        => $_POST['url']
-				];
-		if ($query->execute($banner))
-		{
-			header('location:index.php?route=banners');
-		}
-		else
-		{
-			echo "Erro na inclusao";
-		}
-	}
-?>
+<h1>Criar Banner</h1>
 <form action="" method="POST">
 	<div class="form-group">
 		<label for="nome">Nome</label>

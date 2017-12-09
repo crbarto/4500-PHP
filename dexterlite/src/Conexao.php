@@ -1,4 +1,5 @@
 <?php
+namespace src\Conexao;
 class Conexao
 {
 
@@ -17,7 +18,7 @@ class Conexao
 		if (is_null(self::$instance))
 		{
 
-			self::$instance = new pdo('pgsql:host=localhost;dbname=dexter_lite;','barto','1234');
+			self::$instance = new \pdo('pgsql:host=localhost;dbname=dexter_lite;','barto','1234');
 
 		}
 		return self::$instance;
