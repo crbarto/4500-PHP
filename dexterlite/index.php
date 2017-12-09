@@ -7,6 +7,8 @@
 	<body>
 		<div class="container">
 			<?php
+				session_start();
+
 				// Conexao com o banco
 				require "src/Conexao.php";
 
@@ -15,6 +17,12 @@
 
 				//Models
 				require "Model/BannerModel/BannerModel.php";
+
+				// Trait
+				require "src/MensagemTrait.php";					
+				use src\Mensagem as Mensagem;
+
+				$msg = Mensagem::exibiMsg();
 
 				if (!isset($_GET['route']))
 				{

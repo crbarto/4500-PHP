@@ -1,4 +1,7 @@
 <h1>Lista de Banners</h1>
+<?php
+	echo $msg;
+?>
 <a href="?route=banner/create" class="btn btn-primary"> Criar Banner </a>
 <table class="table table-striped">
 	<thead>
@@ -19,7 +22,7 @@
 			<td><?= $banner->getUrl() ?> </td>
 			<td>
 				<a href="?route=banner/update&id=<?= $banner->getId() ?>"
-						class="btn btn-primary"> Editar	</a>
+						class="btn btn-primary"> Editar(<?= $banner->getId() ?>)</a>
 			</td>
 			<td>			
 				<a href="?route=banner/delete&id=<?= $banner->getId() ?>"

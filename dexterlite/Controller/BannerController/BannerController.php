@@ -1,6 +1,7 @@
 <?php
 use src\Conexao\Conexao as Conexao;
 use Model\BannerModel\BannerModel as Banner;
+use src\Mensagem as Mensagem;
 class BannerController
 {
 
@@ -55,6 +56,7 @@ class BannerController
 
 		if ($query->execute($param))
 		{
+				Mensagem::salvaMsg("success","Sucesso!","Banner criado");
 
 				header('location:index.php?route=banner/read');
 
@@ -62,7 +64,7 @@ class BannerController
 		else
 		{
 
-			echo "Erro ao adicioar o bannser";
+			Mensagem::salvaMsg("warning","Erro!","Bannser nao foi criado");
 
 		}
 
@@ -87,13 +89,13 @@ class BannerController
 
 		if ($query->execute($param))
 		{
-
-				header('location:index.php?route=banner/read');
+			Mensagem::salvaMsg("success","Sucesso!","Banner alterado");
+			header('location:index.php?route=banner/read');
 
 		}
 		else
 		{
-
+			Mensagem::salvaMsg("warning","Aviso!","Banner nao alterado");
 			echo "Erro ao fazer update do banner";
 
 		}
@@ -111,13 +113,14 @@ class BannerController
 		if ($query->execute($banner))
 		{
 
-				header('location:index.php?route=banner/read');
-
+			Mensagem::salvaMsg("success","Sucesso!","Banner Excluido");
+			header('location:index.php?route=banner/read');
+			
 		}
 		else
 		{
 
-			echo "Erro ao deletar o banner";
+			Mensagem::salvaMsg("warning","Aviso!","Banner nao excluido");
 			header('location:index.php?route=banner/read');
 
 		}
