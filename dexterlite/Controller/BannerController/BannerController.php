@@ -36,6 +36,7 @@ class BannerController
 	public static function create()
 	{
 
+		$banner = new Banner($_POST['nome'],$_POST['descricao'],_POST['url']);
 		$con = Conexao::getInstance();
 		$query = $con->prepare("insert into banners(nome,
 													descricao,
@@ -46,13 +47,13 @@ class BannerController
 													:url
 													)"
 													);
-		$banner = [
-					":nome"       => $_POST['nome'],
-					":descricao"  => $_POST['descricao'],
-					":url"        => $_POST['url']
+		$param = [
+					":nome"       => $banner->getNome(),
+					":descricao"  => $banner->getDescricao(),
+					":url"        => $banner->getUrl()
 					];
 
-		if ($query->execute($banner))
+		if ($query->execute($param))
 		{
 
 				header('location:index.php?route=banner/read');
@@ -70,20 +71,21 @@ class BannerController
 	public static function update($id)
 	{
 
+		$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
 		$con = Conexao::getInstance();
 		$query = $con->prepare("UPDATE banners SET nome = :nome,
 													descricao = :descricao,
 													url = :url
 												WHERE id = :id");
 
-		$banner = [
-					":nome"       => $_POST['nome'],
-					":descricao"  => $_POST['descricao'],
-					":url"        => $_POST['url'],
-					":id"         => $id
+		$param = [
+					":nome"       => $banner->getNome(),
+					":descricao"  => $banner->getDescricao(),
+					":url"        => $banner->getUrl(),
+					":id"		  => $banner->getId()
 					];
 
-		if ($query->execute($banner))
+		if ($query->execute($param))
 		{
 
 				header('location:index.php?route=banner/read');

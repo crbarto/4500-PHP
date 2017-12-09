@@ -1,4 +1,4 @@
-<h1>Listar Banners</h1>
+<h1>Lista de Banners</h1>
 <a href="?route=banner/create" class="btn btn-primary"> Criar Banner </a>
 <table class="table table-striped">
 	<thead>
@@ -20,8 +20,10 @@
 			<td>
 				<a href="?route=banner/update&id=<?= $banner->getId() ?>"
 						class="btn btn-primary"> Editar	</a>
+			</td>
+			<td>			
 				<a href="?route=banner/delete&id=<?= $banner->getId() ?>"
-						class="btn btn-primary"> Delete	</a>
+						class="btn btn-danger"> Delete	</a>
 			</td>	
 
 		</tr>
