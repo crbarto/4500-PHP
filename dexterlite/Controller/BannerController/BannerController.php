@@ -9,31 +9,26 @@ class BannerController
 
 	public static function read($id = null)
 	{
-		$con = Conexao::getInstance();
+		$result = Repository::select($id);
+		if ( is_null($id)) {
 
+			$banners = [];
 
-		if (is_null( $id )) 
-		{
-
-			$requisicao = $con->query('SELECT * FROM banners ORDER BY id');
-			$result = $requisicao->fetchAll(\PDO::FETCH_ASSOC);
-			$banners =  [];
 			foreach ($result as $banner) {
 
-				$banners[] = new Banner($banner['nome'],$banner['descricao'],$banner['url'],$banner['id']);
+				$banners[] = new Banner($banner['nome'],
+										$banner['descricao'],
+										$banner['url'],
+										$banner['id'] );
 
 			}
-		} 
-		else
-		{
+	        return $banners;
 
-			$requisicao = $con->query("SELECT * FROM banners WHERE id = $id ORDER BY id");
-			//return $requisicao->fetch(PDO::FETCH_ASSOC);
-			$banner = $requisicao->fetch(\PDO::FETCH_ASSOC);
-			$banners = new Banner($banner['nome'],$banner['descricao'],$banner['url'],$banner['id']);
+		} else {
 
-		}
-		return $banners;
+			return new Banner($result['nome'],$result['descricao'],$result['url'],$result['id'] );
+
+		}     
 
 	}
 
@@ -63,11 +58,10 @@ class BannerController
 	{
 		if (!empty($_POST['nome']) && !empty($_POST['url'])){
 
-			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
+			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url'], $id);
 
 			if (Repository::update( $banner ))
 			{
-				echo "fez update";
 				Mensagem::salvaMsg("success","Sucesso!","Banner alterado");
 				header('location:index.php?route=banner/read');
 
@@ -85,14 +79,11 @@ class BannerController
 	public static function delete($id)
 	{
 
-		if (isset($_POST['delete'])) {
+		if ( isset( $_POST['delete'] ) ) {
 
-			$con = Conexao::getInstance();
-			$query = $con->prepare("DELETE FROM banners WHERE id = :id");
+			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url'], $id);
 
-			$banner = [":id" => $id];
-
-			if ($query->execute($banner))
+			if ( Repository::delete( $banner ) )
 			{
 
 				Mensagem::salvaMsg("success","Sucesso!","Banner Excluido");
@@ -106,6 +97,7 @@ class BannerController
 				header('location:index.php?route=banner/read');
 
 			}
+
 		}	
 
 		return BannerController::read( $_GET['id'] );
