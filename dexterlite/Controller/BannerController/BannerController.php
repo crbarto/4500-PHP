@@ -1,13 +1,16 @@
 <?php
-use src\Conexao\Conexao as Conexao;
+namespace Controller\BannerController;
+use src\Conexao as Conexao;
 use Model\BannerModel\BannerModel as Banner;
 use src\Mensagem as Mensagem;
+use Repository\BannerRepository\BannerRepository as Repository;
 class BannerController
 {
 
 	public static function read($id = null)
 	{
 		$con = Conexao::getInstance();
+
 
 		if (is_null( $id )) 
 		{
@@ -36,95 +39,76 @@ class BannerController
 
 	public static function create()
 	{
+		if (!empty($_POST['nome']) && !empty($_POST['url'])){
 
-		$banner = new Banner($_POST['nome'],$_POST['descricao'],_POST['url']);
-		$con = Conexao::getInstance();
-		$query = $con->prepare("insert into banners(nome,
-													descricao,
-													url
-													) values (
-													:nome,
-													:descricao,
-													:url
-													)"
-													);
-		$param = [
-					":nome"       => $banner->getNome(),
-					":descricao"  => $banner->getDescricao(),
-					":url"        => $banner->getUrl()
-					];
+			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
 
-		if ($query->execute($param))
-		{
+			if ( Repository::insert( $banner ) )
+			{
 				Mensagem::salvaMsg("success","Sucesso!","Banner criado");
 
 				header('location:index.php?route=banner/read');
 
+			}
+			else
+			{
+
+				Mensagem::salvaMsg("warning","Erro!","Bannser nao foi criado");
+
+			}
 		}
-		else
-		{
-
-			Mensagem::salvaMsg("warning","Erro!","Bannser nao foi criado");
-
-		}
-
 	}
 
 	public static function update($id)
 	{
+		if (!empty($_POST['nome']) && !empty($_POST['url'])){
 
-		$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
-		$con = Conexao::getInstance();
-		$query = $con->prepare("UPDATE banners SET nome = :nome,
-													descricao = :descricao,
-													url = :url
-												WHERE id = :id");
+			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
 
-		$param = [
-					":nome"       => $banner->getNome(),
-					":descricao"  => $banner->getDescricao(),
-					":url"        => $banner->getUrl(),
-					":id"		  => $banner->getId()
-					];
+			if (Repository::update( $banner ))
+			{
+				echo "fez update";
+				Mensagem::salvaMsg("success","Sucesso!","Banner alterado");
+				header('location:index.php?route=banner/read');
 
-		if ($query->execute($param))
-		{
-			Mensagem::salvaMsg("success","Sucesso!","Banner alterado");
-			header('location:index.php?route=banner/read');
+			}
+			else
+			{
+				Mensagem::salvaMsg("warning","Aviso!","Banner nao alterado");
+				echo "Erro ao fazer update do banner";
 
+			}
 		}
-		else
-		{
-			Mensagem::salvaMsg("warning","Aviso!","Banner nao alterado");
-			echo "Erro ao fazer update do banner";
-
-		}
-
+		return BannerController::read( $_GET['id'] );
 	}
 
 	public static function delete($id)
 	{
 
-		$con = Conexao::getInstance();
-		$query = $con->prepare("DELETE FROM banners WHERE id = :id");
+		if (isset($_POST['delete'])) {
 
-		$banner = [":id" => $id];
+			$con = Conexao::getInstance();
+			$query = $con->prepare("DELETE FROM banners WHERE id = :id");
 
-		if ($query->execute($banner))
-		{
+			$banner = [":id" => $id];
 
-			Mensagem::salvaMsg("success","Sucesso!","Banner Excluido");
-			header('location:index.php?route=banner/read');
-			
-		}
-		else
-		{
+			if ($query->execute($banner))
+			{
 
-			Mensagem::salvaMsg("warning","Aviso!","Banner nao excluido");
-			header('location:index.php?route=banner/read');
+				Mensagem::salvaMsg("success","Sucesso!","Banner Excluido");
+				header('location:index.php?route=banner/read');
+				
+			}
+			else
+			{
 
-		}
+				Mensagem::salvaMsg("warning","Aviso!","Banner nao excluido");
+				header('location:index.php?route=banner/read');
 
+			}
+		}	
+
+		return BannerController::read( $_GET['id'] );
 	}
 
 }

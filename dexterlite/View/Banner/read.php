@@ -1,6 +1,9 @@
 <h1>Lista de Banners</h1>
 <?php
-	echo $msg;
+	if ( isset($msg) ) {
+		echo $msg;		
+	}
+
 ?>
 <a href="?route=banner/create" class="btn btn-primary"> Criar Banner </a>
 <table class="table table-striped">
@@ -14,7 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($banners as $banner) :?>
+		<?php foreach ($data as $banner) :?>
 		<tr>
 			<td><?= $banner->getId() ?> </td>
 			<td><?= $banner->getNome() ?> </td>

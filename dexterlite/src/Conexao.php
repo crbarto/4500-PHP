@@ -1,5 +1,5 @@
 <?php
-namespace src\Conexao;
+namespace src;
 class Conexao
 {
 
