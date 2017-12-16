@@ -16,6 +16,11 @@
 		<p class="form-control-static"><?= $data->getUrl(); ?></p>
 	</div>
 
+	<div class="form-group">
+		<label for="categoria">Categoria</label>
+		<p class="form-control-static"><?= $data->getCategoria(); ?></p>
+	</div>
+
 	<button class="btn btn-danger">Apagar</button>
 </form>
 

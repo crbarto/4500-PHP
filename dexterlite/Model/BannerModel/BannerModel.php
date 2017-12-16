@@ -9,14 +9,16 @@ class BannerModel
 	private $nome;
 	private $descricao;
 	private $url;
+	private $categoria;
 
-	public function __construct($nome,$descricao,$url,$id = null)
+	public function __construct($nome, $descricao, $url, $categoria, $id = null)
 	{
 
-		$this->id = $id;
-		$this->nome = $nome;
+		$this->id        = $id;
+		$this->nome      = $nome;
 		$this->descricao = $descricao;
-		$this->url = $url;
+		$this->url       = $url;
+		$this->categoria = $categoria;
 		
 	}
 
@@ -48,29 +50,41 @@ class BannerModel
 	
 	}
 
-	function getId()
+	public function setCategoria($categoria)
+	{
+
+		$this->categoria = $categoria;
+
+	}
+
+	public function getId()
 	{
 
 		return $this->id;
 
 	}
-	function getNome()
+	public function getNome()
 	{
 
 		return $this->nome;
 	
 	}
-	function getDescricao()
+	public function getDescricao()
 	{
 
 		return $this->descricao;
 	
 	}
-	function getUrl()
+	public function getUrl()
 	{
 
 		return $this->url;
 	
 	}
+	public function getCategoria()
+	{
 
+		return $this->categoria;
+
+	}
 }

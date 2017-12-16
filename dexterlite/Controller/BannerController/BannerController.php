@@ -19,14 +19,19 @@ class BannerController
 				$banners[] = new Banner($banner['nome'],
 										$banner['descricao'],
 										$banner['url'],
-										$banner['id'] );
+										$banner['categoria'] ,
+										$banner['id']);
 
 			}
 	        return $banners;
 
 		} else {
 
-			return new Banner($result['nome'],$result['descricao'],$result['url'],$result['id'] );
+			return new Banner($result['nome'],
+								$result['descricao'],
+								$result['url'],
+								$result['categoria'],
+								$result['id'] );
 
 		}     
 
@@ -34,13 +39,12 @@ class BannerController
 
 	public static function create()
 	{
-		if (!empty($_POST['nome']) && !empty($_POST['url'])){
+		if (!empty($_POST['nome']) && !empty($_POST['descricao']) && !empty($_POST['url']) && !empty($_POST['categoria']) ){
 
-			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url']);
+			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url'],$_POST['categoria']);
 
 			if ( Repository::insert( $banner ) )
 			{
-				echo "Mensagem";
 				Mensagem::salvaMsg("success","Sucesso!","Banner criado");
 
 				header('location:index.php?route=banner/read');
@@ -49,7 +53,7 @@ class BannerController
 			else
 			{
 
-				Mensagem::salvaMsg("warning","Erro!","Bannser nao foi criado");
+				Mensagem::salvaMsg("warning","Erro!","Banner nao foi criado");
 
 			}
 		}
@@ -57,9 +61,13 @@ class BannerController
 
 	public static function update($id)
 	{
-		if (!empty($_POST['nome']) && !empty($_POST['url'])){
+		if (!empty( $_POST['nome'] ) && !empty( $_POST['url'] ) && !empty( $_POST['categoria'] ) ){
 
-			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url'], $id);
+			$banner = new Banner($_POST['nome'],
+								$_POST['descricao'],
+								$_POST['url'],
+								$_POST['categoria'],
+								 $id);
 
 			if (Repository::update( $banner ))
 			{
@@ -82,7 +90,11 @@ class BannerController
 
 		if ( isset( $_POST['delete'] ) ) {
 
-			$banner = new Banner($_POST['nome'],$_POST['descricao'],$_POST['url'], $id);
+			$banner = new Banner($_POST['nome'],
+								$_POST['descricao'],
+								$_POST['url'],
+								$_POST['categoria'],
+								 $id);
 
 			if ( Repository::delete( $banner ) )
 			{

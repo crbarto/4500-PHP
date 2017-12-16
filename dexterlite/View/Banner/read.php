@@ -14,6 +14,7 @@
 			<th>Nome</th>
 			<th>Descricao</th>
 			<th>Url</th>
+			<th>Categoria</th>
 			<th>Açoes</th>
 		</tr>
 	</thead>
@@ -24,6 +25,7 @@
 			<td><?= $banner->getNome() ?> </td>
 			<td><?= $banner->getDescricao() ?> </td>
 			<td><?= $banner->getUrl() ?> </td>
+			<td><?= $banner->getCategoria() ?> </td>
 			<td>
 				<a href="?route=banner/update&id=<?= $banner->getId() ?>"
 						class="btn btn-primary"> Editar(<?= $banner->getId() ?>)</a>

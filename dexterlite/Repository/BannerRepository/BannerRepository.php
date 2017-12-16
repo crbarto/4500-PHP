@@ -35,24 +35,26 @@ class BannerRepository{
 			$con = Conexao::getInstance();
 			$query = $con->prepare("insert into banners(nome,
 									descricao,
-									url
+									url,
+									categoria
 									) values (
 									:nome,
 									:descricao,
-									:url
-									)"
-									);
+									:url,
+									:categoria
+									)");
 				$param = [
-				":nome"       => $banner->getNome(),
-				":descricao"  => $banner->getDescricao(),
-				":url"        => $banner->getUrl()
+				":nome"             => $banner->getNome(),
+				":descricao"        => $banner->getDescricao(),
+				":url"              => $banner->getUrl(),
+				":categoria"        => $banner->getCategoria()
 				];
 				return $query->execute($param);
 
 		} catch (\PDOException $e) {
 
-			// echo "<pre>";
-			// print_r($e);
+			echo "<pre>";
+			 print_r($e);
 			return false;
 		}		
 
@@ -62,15 +64,17 @@ class BannerRepository{
 		try {
 
 			$con = Conexao::getInstance();
-			$query = $con->prepare("UPDATE banners SET nome = :nome,
-					descricao = :descricao,
-					url = :url
-					WHERE id = :id");
+			$query = $con->prepare("UPDATE banners SET  nome      = :nome,
+														descricao = :descricao,
+														url       = :url,
+														categoria = :categoria
+													WHERE      id = :id");
 
 			$param = [
 				":nome"       => $banner->getNome(),
 				":descricao"  => $banner->getDescricao(),
 				":url"        => $banner->getUrl(),
+				":categoria"  => $banner->getCategoria(),
 				":id"		  => $banner->getId()
 				];
 

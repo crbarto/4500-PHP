@@ -18,6 +18,12 @@
 		value=" <?= $data->getUrl();?>" >
 	</div>
 
+	<div class="form-group">
+		<label for="url">Categoria</label>
+		<input class="form-control" id="categoria" name="categoria" placeholder="Categoria" 
+		value=" <?= $data->getCategoria();?>" >
+	</div>
+
 	<button class="btn btn-primary">Alterar</button>
 
 </form>
