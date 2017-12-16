@@ -40,6 +40,7 @@ class BannerController
 
 			if ( Repository::insert( $banner ) )
 			{
+				echo "Mensagem";
 				Mensagem::salvaMsg("success","Sucesso!","Banner criado");
 
 				header('location:index.php?route=banner/read');

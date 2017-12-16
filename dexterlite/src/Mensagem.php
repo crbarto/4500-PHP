@@ -27,8 +27,6 @@ trait Mensagem
 		    $strong = $_SESSION['strong'];
 		    $text   = $_SESSION['text'];
 			$msg = "<div class='alert alert-{$class}'><strong>{$strong}</strong>{$text}</div>";
-	    	// Destroi a sessao
-			session_destroy();
 		}
 		return $msg;
 	}

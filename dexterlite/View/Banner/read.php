@@ -1,7 +1,8 @@
 <h1>Lista de Banners</h1>
 <?php
 	if ( isset($msg) ) {
-		echo $msg;		
+		echo $msg;	
+		session_destroy();
 	}
 
 ?>

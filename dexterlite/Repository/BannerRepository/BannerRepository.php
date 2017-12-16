@@ -51,9 +51,9 @@ class BannerRepository{
 
 		} catch (\PDOException $e) {
 
-			echo "<pre>";
-			print_r($e);
-
+			// echo "<pre>";
+			// print_r($e);
+			return false;
 		}		
 
 	}
